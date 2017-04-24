@@ -1,0 +1,8 @@
+{% for prize in active_prizes %}
+  <div class="prize-listing">
+    <h1 class="prize-name"> {{ prize.name }} </h1>
+    <span class="prize-start"> {{ prize.start_date }} </span>
+    <a href={{ prize.item_link }}> link </a>
+    <span class="prize-value"> value: {{ prize.value }}
+  </div>
+{% endfor %}
