@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from .models import Prize
+from .models import Giveaway, Prize, Category
 
 # Create your views here.
 
 def giveaway_list(request):
-    active_prizes = Prize.objects.filter(end_date=None);
-    return render(request, 'giveaway/giveaway_list.html', {'active_prizes': active_prizes})
+    active_giveaways = Giveaway.objects.filter(end_time=None)
+    return render(request, 'giveaway/giveaway_list.html', {'active_giveaways': active_giveaways})
