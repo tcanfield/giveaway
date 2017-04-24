@@ -1,8 +1,9 @@
-{% for prize in active_prizes %}
+{% for giveaway in active_giveaways %}
   <div class="prize-listing">
-    <h1 class="prize-name"> {{ prize.name }} </h1>
-    <span class="prize-start"> {{ prize.start_date }} </span>
-    <a href={{ prize.item_link }}> link </a>
-    <span class="prize-value"> value: {{ prize.value }}
+    <h1 class="prize-name"> {{ giveaway.name }} </h1>
+    <img src="{{ giveaway.prize.image.url }}"
+    <span class="prize-start"> {{ giveaway.start_date }} </span>
+    <a href={{ giveaway.prize.link }}> link </a>
+    <span class="prize-value"> value: {{ giveaway.prize.value }}
   </div>
 {% endfor %}
