@@ -1,0 +1,7 @@
+{% for category in parent_categories %}
+  <div id="category-list">
+    <div id="category-listing">
+      <a href="{% url 'giveaway_list' pk=category.pk %}">  {{ category.name }} </a>
+    </div>
+  </div>
+{% endfor %}
