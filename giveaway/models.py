@@ -6,6 +6,13 @@ class Category(models.Model):
     name = models.TextField()
     description = models.TextField()
 
+    def get_all_sub_categories(self):
+        all_sub_categories = []
+        for sub_category in Category.objects.filter(parent_category=self):
+            all_sub_categories.append(sub_category)
+            sub_category.get_all_sub_categories()
+        return all_sub_categories
+
     def __str__(self):
         return self.name
 
