@@ -42,7 +42,7 @@ class Giveaway(models.Model):
 
     def rollToWin(self):
         min = 1
-        max = math.ceil(1 / 1)
+        max = math.ceil(1 / self.odds)
         winningNum = random.randint(min, max)
         rolledNum = random.randint(min, max)
         if(rolledNum == winningNum):
