@@ -1,5 +1,5 @@
 from django.db import models
-import datetime
+import random, math, datetime
 # Create your models here.
 class Category(models.Model):
     parent_category = models.ForeignKey('Category', on_delete=models.CASCADE, null=True, blank=True)
@@ -34,18 +34,33 @@ class Giveaway(models.Model):
     start_time = models.DateTimeField(default=datetime.datetime.now)
     end_time = models.DateTimeField(blank=True, null=True)
     odds = models.DecimalField(max_digits=999, decimal_places=999)
-    winner_email_address = models.EmailField(null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     attempts = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.name
 
+    def rollToWin(self):
+        min = 1
+        max = math.ceil(1 / 1)
+        winningNum = random.randint(min, max)
+        rolledNum = random.randint(min, max)
+        if(rolledNum == winningNum):
+            return True
+        else:
+            return False
+
     def start(self):
-        self.start = datetime.datetime.now()
+        self.start_time = datetime.datetime.now()
         self.save()
 
     def end(self):
-        self.end = datetime.datetime.now()
+        self.end_time = datetime.datetime.now()
         # TODO: Code to handle sending the prize to the winner and any other alerts necessary to show that the giveaway has ended
         self.save()
+
+class Entry(models.Model):
+    giveaway = models.ForeignKey(Giveaway)
+    email_address = models.EmailField()
+    attempts = models.PositiveIntegerField(default=1)
+    winner = models.BooleanField(default=False)

@@ -1,9 +1,17 @@
-{% for giveaway in active_giveaways %}
   <div class="prize-listing">
+    winner = {{ is_winner }}
       <a href="{% url 'giveaway' pk=giveaway.pk %}">  {{ giveaway.name }} </a>
     <img src="{{ giveaway.prize.image.url }}"
     <span class="prize-start"> {{ giveaway.start_date }} </span>
     <a href={{ giveaway.prize.link }}> link </a>
     <span class="prize-value"> value: {{ giveaway.prize.value }}
+
+
+    <form action="/enter_giveaway/{{ giveaway.id }}/" method="post">
+      {% csrf_token %}
+      <label for="email_address"> Email address: </label>
+      <input id="email_address" type="text" name="email_address">
+      <input type="submit" value="OK">
+    </form>
+
   </div>
-{% endfor %}
