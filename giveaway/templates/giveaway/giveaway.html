@@ -3,6 +3,7 @@
 
 {% block body %}
   <div class="prize-listing">
+    <h1> Enter Giveaway </h1>
     <a href="{% url 'giveaway' pk=giveaway.pk %}">  {{ giveaway.name }} </a>
     <img src="{{ giveaway.prize.image.url }}"
     <span class="prize-start"> {{ giveaway.start_date }} </span>

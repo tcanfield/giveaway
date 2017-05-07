@@ -2,6 +2,7 @@
 {% block title %}Giveaway list{% endblock %}
 
 {% block body %}
+  <h1>{{ parent_category.name }} Giveaways</h1>
   {% for giveaway in active_giveaways %}
     <div class="prize-listing">
         <a href="{% url 'giveaway' pk=giveaway.pk %}">  {{ giveaway.name }} </a>

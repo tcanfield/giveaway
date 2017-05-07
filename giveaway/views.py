@@ -15,7 +15,7 @@ def giveaway_list(request, pk):
     all_categories.extend(sub_categories)
 
     active_giveaways = Giveaway.objects.filter(end_time=None).filter(category__in=all_categories)
-    return render(request, 'giveaway/giveaway_list.html', {'active_giveaways': active_giveaways})
+    return render(request, 'giveaway/giveaway_list.html', {'active_giveaways': active_giveaways, 'parent_category':parent_category})
 
 def giveaway(request, pk):
     giveaway = Giveaway.objects.get(pk=pk)
