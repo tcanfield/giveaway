@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.core.mail import send_mail
 from .models import Giveaway, Prize, Category, Entry
 
 # Create your views here.
@@ -20,6 +21,12 @@ def giveaway(request, pk):
     giveaway = Giveaway.objects.get(pk=pk)
     return render(request, 'giveaway/giveaway.html', {'giveaway': giveaway})
 
+
+def enter_giveaway_result(request, giveaway_id, entry_id):
+    giveaway = Giveaway.objects.get(pk=giveaway_id)
+    entry = Entry.objects.get(pk=entry_id)
+    return render(request, 'giveaway/enter_giveaway.html', {'giveaway':giveaway, 'entry':entry})
+
 def enter_giveaway(request, giveaway_id):
     giveaway = Giveaway.objects.get(pk=giveaway_id)
     giveaway.attempts += 1
@@ -39,4 +46,15 @@ def enter_giveaway(request, giveaway_id):
     giveaway.save()
     entry.save()
 
-    return render(request, 'giveaway/enter_giveaway.html', {'giveaway':giveaway, 'entry':entry})
+    #Email winner
+    if(is_winner):
+        email_winner(entry)
+
+    return redirect(enter_giveaway_result, giveaway.id, entry.id)
+
+def email_winner(entry):
+    if(entry.winner):
+        address = entry.email_address;
+        subject = "Congratulations"
+        body = "Congratulations! You have won " + entry.giveaway.prize.name
+        send_mail(subject, body, "testemail@testemail.com", [address])

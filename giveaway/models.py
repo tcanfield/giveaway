@@ -56,7 +56,6 @@ class Giveaway(models.Model):
 
     def end(self):
         self.end_time = datetime.datetime.now()
-        # TODO: Code to handle sending the prize to the winner and any other alerts necessary to show that the giveaway has ended
         self.save()
 
 class Entry(models.Model):
