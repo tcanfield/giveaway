@@ -1,6 +1,9 @@
+{% extends 'giveaway/base.html' %}
+{% block title %}Prize{% endblock %}
+
+{% block body %}
   <div class="prize-listing">
-    winner = {{ is_winner }}
-      <a href="{% url 'giveaway' pk=giveaway.pk %}">  {{ giveaway.name }} </a>
+    <a href="{% url 'giveaway' pk=giveaway.pk %}">  {{ giveaway.name }} </a>
     <img src="{{ giveaway.prize.image.url }}"
     <span class="prize-start"> {{ giveaway.start_date }} </span>
     <a href={{ giveaway.prize.link }}> link </a>
@@ -15,3 +18,4 @@
     </form>
 
   </div>
+{% endblock %}

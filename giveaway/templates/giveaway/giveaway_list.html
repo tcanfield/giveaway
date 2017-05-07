@@ -1,9 +1,14 @@
-{% for giveaway in active_giveaways %}
-  <div class="prize-listing">
-      <a href="{% url 'giveaway' pk=giveaway.pk %}">  {{ giveaway.name }} </a>
-    <img src="{{ giveaway.prize.image.url }}"
-    <span class="prize-start"> {{ giveaway.start_date }} </span>
-    <a href={{ giveaway.prize.link }}> link </a>
-    <span class="prize-value"> value: {{ giveaway.prize.value }}
-  </div>
-{% endfor %}
+{% extends 'giveaway/base.html' %}
+{% block title %}Giveaway list{% endblock %}
+
+{% block body %}
+  {% for giveaway in active_giveaways %}
+    <div class="prize-listing">
+        <a href="{% url 'giveaway' pk=giveaway.pk %}">  {{ giveaway.name }} </a>
+      <img src="{{ giveaway.prize.image.url }}"
+      <span class="prize-start"> {{ giveaway.start_date }} </span>
+      <a href={{ giveaway.prize.link }}> link </a>
+      <span class="prize-value"> value: {{ giveaway.prize.value }}
+    </div>
+  {% endfor %}
+{% endblock %}

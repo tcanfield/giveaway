@@ -1,7 +1,12 @@
-{% for category in parent_categories %}
-  <div id="category-list">
-    <div id="category-listing">
-      <a href="{% url 'giveaway_list' pk=category.pk %}">  {{ category.name }} </a>
+{% extends 'giveaway/base.html' %}
+{% block title %}Categories{% endblock %}
+
+{% block body %}
+  {% for category in parent_categories %}
+    <div id="category-list">
+      <div id="category-listing">
+        <a href="{% url 'giveaway_list' pk=category.pk %}">  {{ category.name }} </a>
+      </div>
     </div>
-  </div>
-{% endfor %}
+  {% endfor %}
+{% endblock %}
