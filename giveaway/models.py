@@ -48,7 +48,7 @@ class Giveaway(models.Model):
         if(rolledNum == winningNum):
             return True
         else:
-            return True #TODO True to test winning, set back to false
+            return False
 
     def start(self):
         self.start_time = datetime.datetime.now()
