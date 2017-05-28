@@ -1,6 +1,9 @@
 {% extends 'giveaway/base.html' %}
+{% load static %}
 {% block title %}Categories{% endblock %}
-
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/category_list.css' %}">
+{% endblock %}
 {% block body %}
   <h1>Categories</h1>
   {% for category in parent_categories %}
