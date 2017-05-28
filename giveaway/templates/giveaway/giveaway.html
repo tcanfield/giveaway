@@ -1,22 +1,32 @@
 {% extends 'giveaway/base.html' %}
+{% load static %}
 {% block title %}Prize{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/giveaway.css' %}">
+{% endblock %}
 
 {% block body %}
-  <div class="prize-listing">
+<div class="container">
+  <div class="header">
     <h1> Enter Giveaway </h1>
-    <a href="{% url 'giveaway' pk=giveaway.pk %}">  {{ giveaway.name }} </a>
-    <img src="{{ giveaway.prize.image.url }}"
-    <span class="prize-start"> {{ giveaway.start_date }} </span>
-    <a href={{ giveaway.prize.link }}> link </a>
-    <span class="prize-value"> value: {{ giveaway.prize.value }}
-
-
-    <form action="/enter_giveaway/{{ giveaway.id }}/" method="post">
-      {% csrf_token %}
-      <label for="email_address"> Email address: </label>
-      <input id="email_address" type="text" name="email_address">
-      <input type="submit" value="OK">
-    </form>
-
+    <h2>  {{ giveaway.name }} </h2>
   </div>
+  <div class="row">
+    <div class="col">
+      <div class="prize-listing">
+        <img class="prize-picture" src="{{ giveaway.prize.image.url }}" />
+        <div>
+          <span>value: ${{ giveaway.prize.value }} </span>
+        </div>
+        <form action="/enter_giveaway/{{ giveaway.id }}/" method="post">
+          {% csrf_token %}
+          <label for="email_address"> Email address: </label>
+          <input id="email_address" type="text" name="email_address">
+          <input type="submit" value="Enter">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock %}

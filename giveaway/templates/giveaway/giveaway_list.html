@@ -6,14 +6,18 @@
 {% endblock %}
 
 {% block body %}
-  <h1>{{ parent_category.name }} Giveaways</h1>
-  {% for giveaway in active_giveaways %}
-    <div class="prize-listing">
-      <a href="{% url 'giveaway' pk=giveaway.pk %}">  {{ giveaway.name }} </a>
-      <img class="prize-picture" src="{{ giveaway.prize.image.url }}"
-      <span class="prize-start"> {{ giveaway.start_date }} </span>
-      <a href={{ giveaway.prize.link }}> link </a>
-      <span class="prize-value"> value: {{ giveaway.prize.value }}
-    </div>
-  {% endfor %}
+<div class="container">
+  <div class="header">
+    <h1>{{ parent_category.name }} Giveaways</h1>
+  </div>
+  <div class="row">
+    {% for giveaway in active_giveaways %}
+      <div class="col-xs-3 prize-listing">
+        <a href="{% url 'giveaway' pk=giveaway.pk %}">
+          <div class="giveaway-name">{{ giveaway.name }}</div>
+          <img class="prize-picture" src="{{ giveaway.prize.image.url }}" />
+        </a>
+      </div>
+    {% endfor %}
+  </div>
 {% endblock %}

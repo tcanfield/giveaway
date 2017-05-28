@@ -2,8 +2,8 @@ body{
   text-align: center;
 }
 .prize-listing{
-  padding-bottom: 1%;
+  height: 100%;
 }
 .prize-picture{
-  max-width:100%;
+  max-height:50%;
 }
