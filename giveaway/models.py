@@ -18,7 +18,7 @@ class Category(models.Model):
 
 class Prize(models.Model):
     name = models.TextField()
-    image = models.ImageField(upload_to = 'static/images')
+    image = models.ImageField(upload_to = 'images')
     description = models.TextField()
     link = models.URLField()
     referral_link = models.URLField()

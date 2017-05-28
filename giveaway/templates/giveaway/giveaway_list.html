@@ -1,12 +1,16 @@
 {% extends 'giveaway/base.html' %}
+{% load static %}
 {% block title %}Giveaway list{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/giveaway_list.css' %}">
+{% endblock %}
 
 {% block body %}
   <h1>{{ parent_category.name }} Giveaways</h1>
   {% for giveaway in active_giveaways %}
     <div class="prize-listing">
-        <a href="{% url 'giveaway' pk=giveaway.pk %}">  {{ giveaway.name }} </a>
-      <img src="{{ giveaway.prize.image.url }}"
+      <a href="{% url 'giveaway' pk=giveaway.pk %}">  {{ giveaway.name }} </a>
+      <img class="prize-picture" src="{{ giveaway.prize.image.url }}"
       <span class="prize-start"> {{ giveaway.start_date }} </span>
       <a href={{ giveaway.prize.link }}> link </a>
       <span class="prize-value"> value: {{ giveaway.prize.value }}
