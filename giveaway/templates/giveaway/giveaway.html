@@ -21,7 +21,7 @@
         <form action="/enter_giveaway/{{ giveaway.id }}/" method="post">
           {% csrf_token %}
           <label for="email_address"> Email address: </label>
-          <input id="email_address" type="text" name="email_address">
+          <input id="email_address" type="email" name="email_address">
           <input type="submit" value="Enter">
         </form>
       </div>
