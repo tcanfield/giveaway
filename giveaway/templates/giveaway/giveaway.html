@@ -19,7 +19,7 @@
       <div>
         <span>value: ${{ giveaway.prize.value }} </span>
       </div>
-      <form action="/enter_giveaway/{{ giveaway.id }}/" method="post">
+      <form action="/enter_giveaway/{{ giveaway.id }}/" method="post" class="email-form">
         {% csrf_token %}
         <label for="email_address"> Email address: </label>
         <input id="email_address" type="email" name="email_address">

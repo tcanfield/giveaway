@@ -5,3 +5,7 @@ body{
 .prize-picture{
   max-height:500px;
 }
+
+.email-form{
+  padding: 1%;
+}

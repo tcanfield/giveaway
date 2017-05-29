@@ -15,7 +15,7 @@
       <div class="col-md-3 col-xs-6 prize-listing">
         <a href="{% url 'giveaway' pk=giveaway.pk %}">
           <div class="giveaway-name">{{ giveaway.name }}</div>
-          <img class="prize-picture" src="{{ giveaway.prize.image.url }}" />
+          <img class="img-responsive" src="{{ giveaway.prize.image.url }}" />
         </a>
       </div>
     {% endfor %}
