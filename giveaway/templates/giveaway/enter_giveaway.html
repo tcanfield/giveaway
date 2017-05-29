@@ -1,12 +1,16 @@
 {% extends 'giveaway/base.html' %}
+{% load static %}
 {% block title %}Results{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/enter_giveaway.css' %}">
+{% endblock %}
 
 {% block body %}
   <div>
     {% if entry.winner %}
-      Congrats you win
+      Congrats, you've won!  You will be emailed with instructions on how to receive your prize.
     {% else %}
-      Sorry you did not win
+      Sorry, you did not win. <a href="/giveaway/{{giveaway.id}}/"> Try again. </a>
     {% endif %}
   </div>
 {% endblock %}

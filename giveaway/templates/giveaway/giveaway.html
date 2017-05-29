@@ -6,26 +6,29 @@
 {% endblock %}
 
 {% block body %}
-<div class="container">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12"> Ad </div>
+  </div>
   <div class="header">
-    <h1> Enter Giveaway </h1>
-    <h2>  {{ giveaway.name }} </h2>
+    <h1> {{ giveaway.name }} Giveaway </h1>
   </div>
   <div class="row">
-    <div class="col">
-      <div class="prize-listing">
-        <img class="prize-picture" src="{{ giveaway.prize.image.url }}" />
-        <div>
-          <span>value: ${{ giveaway.prize.value }} </span>
-        </div>
-        <form action="/enter_giveaway/{{ giveaway.id }}/" method="post">
-          {% csrf_token %}
-          <label for="email_address"> Email address: </label>
-          <input id="email_address" type="email" name="email_address">
-          <input type="submit" value="Enter">
-        </form>
+    <div class="col-sm-12 prize-listing">
+      <img class="prize-picture" src="{{ giveaway.prize.image.url }}" />
+      <div>
+        <span>value: ${{ giveaway.prize.value }} </span>
       </div>
+      <form action="/enter_giveaway/{{ giveaway.id }}/" method="post">
+        {% csrf_token %}
+        <label for="email_address"> Email address: </label>
+        <input id="email_address" type="email" name="email_address">
+        <input type="submit" value="Enter">
+      </form>
     </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12"> Amazon links </div>
   </div>
 </div>
 

@@ -1,9 +1,7 @@
 body{
   text-align: center;
 }
-.prize-listing{
-  height: 100%;
-}
+
 .prize-picture{
-  max-height:50%;
+  max-height:500px;
 }
