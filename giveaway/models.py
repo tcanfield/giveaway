@@ -39,11 +39,12 @@ class Giveaway(models.Model):
     attempts = models.PositiveIntegerField(default=0)
 
 
+
     def __str__(self):
         return self.name
 
     def rollWinningNumbers(self):
-        random.seed(1)
+        random.seed(self)
         winning_numbers = []
         for i in range(self.number_of_rolls):
             roll = random.randint(1, self.max_roll_number)
@@ -84,4 +85,4 @@ class Entry(models.Model):
     winner = models.BooleanField(default=False)
 
     def getRollSeed(self):
-        return self.id + self.attempts
+        return self

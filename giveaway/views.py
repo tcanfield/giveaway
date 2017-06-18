@@ -32,7 +32,7 @@ def enter_giveaway_result(request, giveaway_id, entry_id):
         rolled_numbers = giveaway.rollNumbers(entry.getRollSeed())
         #TODO this will not work if there is only one possible roll, This will need to change if a 100% win rate is ever needed
         while(rolled_numbers == winning_numbers):
-            rolled_numbers = giveaway.rollNumbers()
+            rolled_numbers = giveaway.rollNumbers(entry.getRollSeed())
     return render(request, 'giveaway/enter_giveaway.html', {'giveaway':giveaway, 'winning_numbers':winning_numbers, 'rolled_numbers':rolled_numbers, 'entry':entry})
 
 def enter_giveaway(request, giveaway_id):
@@ -45,6 +45,9 @@ def enter_giveaway(request, giveaway_id):
         entry = Entry(giveaway=giveaway, email_address=email_address)
     else:
         entry.attempts += 1
+
+    #Entry must be saved before getRollSeed in case no entry exists for the id.  It is saved again after the roll to check if it is a winner
+    entry.save()
 
     is_winner = (giveaway.rollNumbers(entry.getRollSeed()) == giveaway.rollWinningNumbers())
     if(is_winner):
