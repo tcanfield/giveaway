@@ -33,12 +33,29 @@ class Giveaway(models.Model):
     prize = models.ForeignKey(Prize, on_delete=models.CASCADE)
     start_time = models.DateTimeField(default=datetime.datetime.now)
     end_time = models.DateTimeField(blank=True, null=True)
-    odds = models.DecimalField(max_digits=999, decimal_places=999)
+    max_roll_number = models.PositiveIntegerField(default=10)
+    number_of_rolls = models.PositiveIntegerField(default=10)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     attempts = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.name
+
+    #TODO seed winning roll so they are the same every time for a giveaway?
+    def rollWinningNumbers(self):
+        winning_numbers = []
+        for i in range(self.number_of_rolls):
+            roll = random.randint(1, self.max_roll_number)
+            winning_numbers.append(roll)
+        return winning_numbers
+
+    def rollNumbers(self):
+        rolled_numbers = []
+        for i in range(self.number_of_rolls):
+            roll = random.randint(1, self.max_roll_number)
+            rolled_numbers.append(roll)
+        return rolled_numbers
+
 
     def rollToWin(self):
         min = 1

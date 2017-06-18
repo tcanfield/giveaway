@@ -7,6 +7,14 @@
 
 {% block body %}
   <div>
+    {% for num in winning_numbers %}
+      {{ num }}
+    {% endfor %}
+    <br>
+    {% for num in rolled_numbers %}
+      {{ num }}
+    {% endfor %}
+    <br>
     {% if entry.winner %}
       Congrats, you've won!  You will be emailed with instructions on how to receive your prize.
     {% else %}

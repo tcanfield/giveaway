@@ -25,7 +25,15 @@ def giveaway(request, pk):
 def enter_giveaway_result(request, giveaway_id, entry_id):
     giveaway = Giveaway.objects.get(pk=giveaway_id)
     entry = Entry.objects.get(pk=entry_id)
-    return render(request, 'giveaway/enter_giveaway.html', {'giveaway':giveaway, 'entry':entry})
+    winning_numbers = giveaway.rollWinningNumbers()
+    if(entry.winner):
+        rolled_numbers = winning_numbers
+    else:
+        rolled_numbers = giveaway.rollNumbers()
+        #TODO this will not work if there is only one possible roll, This will need to change if a 100% win rate is ever needed
+        while(rolled_numbers == winning_numbers):
+            rolled_numbers = giveaway.rollNumbers()
+    return render(request, 'giveaway/enter_giveaway.html', {'giveaway':giveaway, 'winning_numbers':winning_numbers, 'rolled_numbers':rolled_numbers, 'entry':entry})
 
 def enter_giveaway(request, giveaway_id):
     giveaway = Giveaway.objects.get(pk=giveaway_id)
@@ -38,7 +46,7 @@ def enter_giveaway(request, giveaway_id):
     else:
         entry.attempts += 1
 
-    is_winner = giveaway.rollToWin()
+    is_winner = (giveaway.rollNumbers() == giveaway.rollWinningNumbers())
     if(is_winner):
         entry.winner = True
         giveaway.end()
