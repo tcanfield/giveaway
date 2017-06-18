@@ -38,18 +38,20 @@ class Giveaway(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     attempts = models.PositiveIntegerField(default=0)
 
+
     def __str__(self):
         return self.name
 
-    #TODO seed winning roll so they are the same every time for a giveaway?
     def rollWinningNumbers(self):
+        random.seed(1)
         winning_numbers = []
         for i in range(self.number_of_rolls):
             roll = random.randint(1, self.max_roll_number)
             winning_numbers.append(roll)
         return winning_numbers
 
-    def rollNumbers(self):
+    def rollNumbers(self, seed):
+        random.seed(seed)
         rolled_numbers = []
         for i in range(self.number_of_rolls):
             roll = random.randint(1, self.max_roll_number)
@@ -80,3 +82,6 @@ class Entry(models.Model):
     email_address = models.EmailField()
     attempts = models.PositiveIntegerField(default=1)
     winner = models.BooleanField(default=False)
+
+    def getRollSeed(self):
+        return self.id + self.attempts
