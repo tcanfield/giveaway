@@ -1,3 +1,23 @@
 body{
   text-align: center;
 }
+
+.winning-number-display {
+  display: inline-block;
+  margin: 0.10%;
+  padding: 1%;
+  background: gray;
+  font-size: 2em;
+  width: 5%;
+  color: black;
+}
+
+.roll-number-display {
+  display: inline-block;
+  margin: 0.10%;
+  padding: 1%;
+  background: gray;
+  font-size: 2em;
+  width: 5%;
+  color: black;
+}

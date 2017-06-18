@@ -3,18 +3,24 @@
 {% block title %}Results{% endblock %}
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/enter_giveaway.css' %}">
+    <script>
+      var rolled_numbers = {{ rolled_numbers }};
+      var max_roll_number = {{ max_roll_number }};
+    </script>
+    <script src="{% static 'js/roll-numbers.js' %}"></script>
 {% endblock %}
 
 {% block body %}
   <div>
     {% for num in winning_numbers %}
-      {{ num }}
+      <div class="winning-number-display"> {{ num }} </div>
     {% endfor %}
     <br>
     {% for num in rolled_numbers %}
-      {{ num }}
+      <div class="roll-number-display"> 1 </div>
     {% endfor %}
     <br>
+    <button id="roll-button">Roll</button>
     {% if entry.winner %}
       Congrats, you've won!  You will be emailed with instructions on how to receive your prize.
     {% else %}

@@ -33,7 +33,7 @@ def enter_giveaway_result(request, giveaway_id, entry_id):
         #TODO this will not work if there is only one possible roll, This will need to change if a 100% win rate is ever needed
         while(rolled_numbers == winning_numbers):
             rolled_numbers = giveaway.rollNumbers(entry.getRollSeed())
-    return render(request, 'giveaway/enter_giveaway.html', {'giveaway':giveaway, 'winning_numbers':winning_numbers, 'rolled_numbers':rolled_numbers, 'entry':entry})
+    return render(request, 'giveaway/enter_giveaway.html', {'giveaway':giveaway, 'winning_numbers':winning_numbers, 'rolled_numbers':rolled_numbers, 'max_roll_number': giveaway.max_roll_number, 'entry':entry})
 
 def enter_giveaway(request, giveaway_id):
     giveaway = Giveaway.objects.get(pk=giveaway_id)
